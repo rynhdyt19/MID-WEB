@@ -53,7 +53,7 @@ if(isset($_GET['ubah'])){
     </div>
     <div class="form-group">
       <label for="gambar">gambar</label>
-      <input type="file" id="gambar" name="gambar" required accept="image/*">
+      <input type="file" id="gambar" name="gambar" <?php if(!isset($_GET['ubah'])){echo "required";} ?> accept="image/*">
     </div>
     <div class="tombol-keputusan">
       <?php

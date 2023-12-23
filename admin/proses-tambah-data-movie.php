@@ -24,7 +24,32 @@ if (isset($_POST['aksi'])) {
             echo $query;
         }
     } elseif ($_POST['aksi'] == "update") {
-        echo "update data";
+        $id_movie = $_POST['id'];
+        $judul = $_POST['judul'];
+        $tahun = $_POST['tahun'];
+        $durasi = $_POST['durasi'];
+        $rating = $_POST['rating'];
+
+        $queryShow = "SELECT * FROM movie WHERE id = '$id_movie';";
+        $sqlShow = mysqli_query($conn, $queryShow);
+        $result = mysqli_fetch_assoc($sqlShow);
+
+        if($_FILES['gambar']['name'] == ""){
+            $gambar = $result['gambar'];
+        }else{
+            $gambar = $_FILES['gambar']['name'];
+            unlink("images/".$result['gambar']);
+            move_uploaded_file($_FILES['gambar']['tmp_name'], 'images/'.$_FILES['gambar']['name']);
+        }
+
+        $query = "UPDATE movie SET gambar='$gambar', judul='$judul', tahun='$tahun', durasi='$durasi', rating='$rating' WHERE id = '$id_movie';";
+        $sql = mysqli_query($conn, $query);
+
+        if ($sql) {
+            header('location: movie_admin.php');
+        } else {
+            echo $query;
+        }
     }
 }
 
