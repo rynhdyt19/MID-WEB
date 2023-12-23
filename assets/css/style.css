@@ -1,0 +1,1396 @@
+:root {
+  --hitam1: hsl(225, 25%, 9%);
+  --hitam2: hsl(170, 21%, 5%);
+  --hitam3: hsl(228, 13%, 15%);
+  --hitam4: hsl(207, 19%, 11%);
+  --abu-abu-cerah: hsl(0, 3%, 80%);
+  --hitam-buram: hsl(229, 15%, 21%);
+  --hitam-buram2: hsl(216, 22%, 18%);
+  --cream-cerah: hsl(0, 7%, 88%);
+  --kuning: hsl(57, 97%, 45%);
+  --hitam-buram3: hsl(253, 21%, 13%);
+  --abu-abu-terang: hsl(0, 0%, 74%);
+  --putih: hsl(0, 100%, 100%);
+  --hitam: hsl(0, 0%, 0%);
+  --hitam-buram4: hsl(0, 0%, 20%);
+
+  --ff-poppins: "Poppins", sans-serif;
+
+  --fs-1: 36px;
+  --fs-2: 32px;
+  --fs-3: 30px;
+  --fs-4: 24px;
+  --fs-5: 20px;
+  --fs-6: 18px;
+  --fs-7: 16px;
+  --fs-8: 15px;
+  --fs-9: 14px;
+  --fs-10: 13px;
+  --fs-11: 12px;
+  --fs-12: 11px;
+
+  --fw-500: 500;
+  --fw-700: 700;
+
+  --transition-1: 0.15s ease;
+  --transition-2: 0.25s ease-in;
+
+  --section-padding: 100px;
+}
+
+/* ketetapan  */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+img,
+span,
+input,
+button,
+ion-icon {
+  display: block;
+}
+
+input {
+  font: inherit;
+  width: 100%;
+  border: none;
+}
+
+select,
+button {
+  font: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+html {
+  font-family: var(--ff-poppins);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--hitam4);
+}
+
+header .container .logo img {
+  width: 200px;
+  height: 70px;
+  padding-top: 0;
+  margin: top 0;
+}
+
+
+/* TITLES & SUBTITLES */
+
+.h1,
+.h2,
+.h3 {
+  color: var(--putih);
+  line-height: 1.2;
+}
+
+.h1 {
+  font-size: var(--fs-1);
+}
+
+.h2 {
+  font-size: var(--fs-2);
+}
+
+.h3 {
+  font-size: var(--fs-6);
+}
+
+.section-subtitle {
+  color: var(--kuning);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-title {
+  text-align: center;
+}
+
+/* BUTTON  */
+
+.btn {
+  color: var(--putih);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border: 2px solid var(--kuning);
+  border-radius: 50px;
+  transition: var(--transition-1);
+}
+
+.btn > ion-icon {
+  font-size: 18px;
+}
+
+.btn-primary {
+  background: var(--hitam1);
+}
+
+.btn-primary:is(:hover, :focus) {
+  background: var(--kuning);
+  color: var(--hitam-buram3);
+}
+
+/* KARTU FILM  */
+
+.movies-list {
+  display: grid;
+  gap: 50px;
+}
+
+.movie-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie-card .card-banner {
+  position: relative;
+  background: var(--hitam-buram);
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: var(--transition-1);
+}
+
+.movie-card .card-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: var(--transition-1);
+}
+
+.movie-card .card-banner:hover {
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5);
+}
+
+.movie-card .card-banner:hover::after {
+  background: hsla(0, 0%, 100%, 0.05);
+}
+
+.movie-card .card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-card .title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.movie-card .card-title {
+  color: var(--putih);
+  font-size: var(--fs-7);
+  transition: var(--transition-1);
+}
+
+.movie-card .card-title:is(:hover, :focus) {
+  color: var(--kuning);
+}
+
+.movie-card .title-wrapper time {
+  color: var(--kuning);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-500);
+}
+
+.movie-card .card-meta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.movie-card .badge {
+  color: var(--kuning);
+}
+
+.movie-card .duration {
+  margin-left: auto;
+}
+
+.movie-card :is(.duration, .rating) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--cream-cerah);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+}
+
+.movie-card :is(.duration, .rating) ion-icon {
+  font-size: 13px;
+  --ionicon-stroke-width: 50px;
+  color: var(--kuning);
+}
+
+/* HEADER  */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-block: 15px;
+  transition: var(--transition-2);
+  z-index: 4;
+}
+
+.header.active {
+  background: var(--hitam4);
+  padding-block: 20px;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-actions {
+  display: none;
+}
+
+.menu-open-btn {
+  color: var(--putih);
+  font-size: 40px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  background: var(--hitam4);
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  box-shadow: -1px 0 3px hsl(0, 0%, 0%, 0.2);
+  transition: 0.15s ease-in;
+  visibility: hidden;
+  z-index: 3;
+}
+
+.navbar.active {
+  right: 0;
+  visibility: visible;
+  transition: 0.25s ease-out;
+}
+
+.navbar-top {
+  padding: 30px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-close-btn {
+  color: var(--putih);
+  font-size: 25px;
+  padding: 5px;
+}
+
+.menu-close-btn ion-icon {
+  --ionicon-stroke-width: 80px;
+}
+
+.navbar-list {
+  border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+  margin-bottom: 30px;
+}
+
+.navbar-link {
+  color: var(--putih);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  padding: 10px 25px;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus) {
+  color: var(--kuning);
+}
+
+.navbar-social-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-social-link {
+  font-size: 20px;
+  color: var(--putih);
+  transition: var(--transition-1);
+}
+
+.navbar-social-link:is(:hover, :focus) {
+  color: var(--kuning);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: hsla(204, 18%, 11%, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: var(--transition-2);
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* hero   */
+
+.hero {
+  background: url("../images/hero-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 750px;
+  height: 100vh;
+  max-height: 1000px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-block: var(--section-padding);
+}
+
+.hero-content {
+  margin-top: 60px;
+}
+
+.hero-subtitle {
+  color: var(--kuning);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-700);
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  margin-bottom: 30px;
+}
+
+.hero-title > strong {
+  color: var(--kuning);
+}
+
+/* YANG AKAN DATANG  */
+
+.upcoming {
+  background:var(--hitam1);
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--section-padding);
+}
+
+.upcoming .flex-wrapper {
+  margin-bottom: 50px;
+}
+
+.upcoming .section-title {
+  margin-bottom: 30px;
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.upcoming .filter-btn {
+  color: var(--putih);
+  background: var(--hitam3);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  border: 2px solid var(--hitam-buram);
+  padding: 12px 26px;
+  border-radius: 50px;
+}
+
+.upcoming .filter-btn:focus {
+  border-color: var(--kuning);
+}
+
+.upcoming .movies-list > li {
+  min-width: 100%;
+  scroll-snap-align: start;
+}
+
+/* SERVICE  */
+
+.service {
+  background: url("../images/service-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--section-padding);
+}
+
+.service-banner {
+  position: relative;
+  margin-bottom: 50px;
+  max-width: 500px;
+}
+
+.service-banner img {
+  width: 100%;
+}
+
+.service-btn {
+  position: absolute;
+  bottom: 0;
+  right: 86px;
+  background: var(--kuning);
+  color: var(--hitam1);
+  font-size: var(--fs-11);
+  text-transform: uppercase;
+  font-weight: var(--fw-500);
+  letter-spacing: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transform: rotate(0.25turn);
+  transform-origin: bottom right;
+  padding: 28px 35px;
+  border-radius: 6px;
+}
+
+.service-btn ion-icon {
+  font-size: 30px;
+  transform: rotate(-0.25turn);
+}
+
+.service-subtitle {
+  position: relative;
+  color: var(--cream-cerah);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-left: 50px;
+  margin-bottom: 10px;
+}
+
+.service-subtitle::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--kuning);
+}
+
+.service-title {
+  margin-bottom: 20px;
+}
+
+.service-text,
+.service-card .card-text {
+  color: var(--abu-abu-terang);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-500);
+  line-height: 1.8;
+}
+
+.service-text {
+  margin-bottom: 40px;
+}
+
+.service-list > li:first-child {
+  padding-bottom: 20px;
+  border-bottom: 1px dashed hsla(0, 0%, 100%, 0.1);
+  margin-bottom: 30px;
+}
+
+.service-card .card-icon {
+  color: var(--putih);
+  width: 85px;
+  height: 85px;
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  border-radius: 50%;
+  outline: 1px dashed var(--kuning);
+  outline-offset: 5px;
+  margin: 5px;
+  margin-bottom: 20px;
+  transition: var(--transition-2);
+}
+
+.service-card:hover .card-icon {
+  background: var(--kuning);
+}
+
+.service-card .card-title {
+  margin-bottom: 10px;
+}
+
+/* FILM LAKU  */
+
+.top-rated {
+  background: url("../images/top-rated-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--section-padding);
+}
+
+.top-rated .section-title {
+  margin-bottom: 50px;
+}
+
+/* TV SERIES  */
+
+.tv-series {
+  background: url("../images/tv-series-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: var(--section-padding);
+}
+
+.tv-series .section-title {
+  margin-bottom: 50px;
+}
+
+/* DAFTAR   */
+
+.daftar {
+  background: url("../images/cta-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding-block: 50px;
+}
+
+.daftar .title-wrapper {
+  margin-bottom: 25px;
+}
+
+.daftar-title {
+  color: var(--hitam4);
+  font-size: var(--fs-3);
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.daftar-text {
+  color: var(--hitam4);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-500);
+  line-height: 1.8;
+}
+
+.daftar .email-field {
+  color: var(--hitam4);
+  font-size: var(--fs-9);
+  padding: 18px 32px;
+  border-radius: 4px;
+  box-shadow: 0 3px 4px hsla(0, 0%, 0%, 0.2);
+  margin-bottom: 15px;
+}
+
+.daftar-form-btn {
+  background: var(--hitam4);
+  color: var(--kuning);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid var(--hitam4);
+  padding: 15px 34px;
+  border-radius: 4px;
+  margin-inline: auto;
+  transition: var(--transition-1);
+}
+
+.daftar-form-btn:is(:hover, :focus) {
+  background: var(--kuning);
+  color: var(--hitam4);
+}
+
+/* FOOTER   */
+
+.footer-top {
+  background: url("../images/footer-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: 80px 50px;
+}
+
+.footer-brand-wrapper .logo {
+  width: max-content;
+  margin-inline: auto;
+  margin-bottom: 60px;
+}
+
+.footer-list,
+.quicklink-list,
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-link {
+  color: var(--abu-abu-cerah);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
+  padding: 5px 15px;
+  transition: var(--transition-1);
+}
+
+:is(.footer-link, .quicklink-link, .social-link):is(:hover, :focus) {
+  color: var(--kuning);
+}
+
+.divider {
+  height: 4px;
+  margin-block: 40px;
+  border-top: 1px solid var(--hitam1);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+}
+
+.quicklink-list {
+  margin-bottom: 20px;
+}
+
+.quicklink-link {
+  color: var(--abu-abu-terang);
+  font-size: var(--fs-10);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  padding: 2px 10px;
+  transition: var(--transition-1);
+}
+
+.social-list {
+  column-gap: 10px;
+}
+
+.social-link {
+  background: var(--hitam1);
+  color: var(--abu-abu-terang);
+  font-size: 14px;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: inset 0 4px 8px hsla(0, 0%, 0%, 0.25);
+  transition: var(--transition-1);
+}
+
+.footer-bottom {
+  padding-block: 20px;
+}
+
+.copyright {
+  color: var(--abu-abu-terang);
+  font-size: var(--fs-10);
+  font-weight: var(--fw-500);
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.copyright > a {
+  display: inline-block;
+  color: var(--kuning);
+}
+
+.footer-bottom-img {
+  max-width: max-content;
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* KEMBALI KEATAS  */
+
+.go-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--kuning);
+  color: var(--hitam4);
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-2);
+  z-index: 2;
+}
+
+.go-top.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* DETAIL FILM  */
+
+.movie-detail {
+  background: url("../images/movie-detail-bg.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 160px;
+  padding-bottom: var(--section-padding);
+}
+
+.movie-detail-banner {
+  position: relative;
+  background: var(--hitam-buram);
+  max-width: 300px;
+  margin-inline: auto;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.movie-detail-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 120px;
+  color: var(--putih);
+  transition: var(--transition-1);
+}
+
+.play-btn:hover {
+  background: hsla(0, 0%, 0%, 0.25);
+}
+
+.detail-subtitle {
+  font-size: var(--fs-5);
+  color: var(--kuning);
+  font-weight: var(--fw-700);
+  margin-bottom: 10px;
+}
+
+.detail-title {
+  margin-bottom: 20px;
+}
+
+.detail-title strong {
+  color: var(--kuning);
+}
+
+.movie-detail .meta-wrapper {
+  margin-bottom: 30px;
+}
+
+.storyline {
+  color: var(--abu-abu-terang);
+  font-size: var(--fs-9);
+  font-weight: var(--fw-500);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.details-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  max-width: 460px;
+  background: var(--hitam-buram2);
+  padding: 25px;
+  border: 1px solid var(--hitam-buram4);
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+.details-actions .share ion-icon {
+  font-size: 25px;
+  color: var(--putih);
+  margin-inline: auto;
+}
+
+.details-actions .share span {
+  color: var(--cream-cerah);
+  font-size: var(--fs-11);
+  transition: var(--transition-1);
+}
+
+.details-actions .share:is(:hover, :focus) span {
+  color: var(--kuning);
+}
+
+.details-actions .title {
+  color: var(--putih);
+  font-weight: var(--fw-700);
+}
+
+.details-actions .text {
+  font-size: var(--fs-11);
+  color: var(--cream-cerah);
+}
+
+.details-actions .btn-primary {
+  font-size: 10px;
+  padding: 13px 26px;
+  letter-spacing: 0;
+  background: transparent;
+}
+
+.details-actions .btn-primary:is(:hover, :focus) {
+  background: var(--kuning);
+}
+
+.download-btn {
+  max-width: max-content;
+  background: var(--kuning);
+  color: var(--hitam1);
+  font-size: var(--fs-11);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 35px;
+  letter-spacing: 5px;
+  border-radius: 6px;
+}
+
+.download-btn ion-icon {
+  font-size: 16px;
+}
+
+.container-team{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.team-card {
+  background-color: var(--abu-abu-cerah);
+  width: 250px;
+  margin: 20px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
+.team-card img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.team-card h2 {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
+
+.team-card p {
+  color: #666;
+}
+
+/* RESPONSIVE */
+
+@media (min-width: 550px) {
+  :root {
+    --fs-1: 42px;
+  }
+  .container {
+    max-width: 540px;
+    margin-inline: auto;
+  }
+
+  .movies-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px 30px;
+  }
+
+  .hero {
+    min-height: unset;
+  }
+
+  .hero-content {
+    margin-top: 20px;
+  }
+
+  .upcoming .movies-list > li {
+    min-width: calc(50% - 15px);
+  }
+
+  .service-list > li:first-child {
+    padding-bottom: 30px;
+  }
+
+  .service-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .service-card .card-icon {
+    margin-bottom: 0;
+  }
+
+  .service-card .card-content {
+    width: calc(100% - 115px);
+  }
+
+  .detail-subtitle {
+    --fs-5: 22px;
+  }
+
+  .detail-title {
+    --fs-1: 46px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  :root {
+    --fs-2: 36px;
+  }
+
+  .container {
+    max-width: 720px;
+  }
+
+  .header .container {
+    gap: 30px;
+  }
+
+  .header-actions {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .header-actions .btn-primary {
+    display: none;
+  }
+
+  .search-btn {
+    position: relative;
+    color: var(--putih);
+    padding-right: 50px;
+  }
+
+  .search-btn ion-icon {
+    --ionicon-stroke-width: 80px;
+  }
+
+  .search-btn::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: -20px;
+    background: hsla(0, 0%, 100%, 0.1);
+    width: 2px;
+    height: 14px;
+  }
+
+  .lang-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .lang-wrapper label {
+    color: var(--kuning);
+    font-size: 20px;
+  }
+
+  .lang-wrapper select {
+    color: var(--putih);
+    font-size: var(--fs-9);
+    font-weight: var(--fw-700);
+  }
+
+  .lang-wrapper option {
+    color: var(--hitam);
+  }
+
+  .hero-content {
+    margin-top: 90px;
+  }
+
+  .service-btn {
+    right: -20px;
+    padding: 40px 50px;
+  }
+
+  .service-content {
+    padding-inline: 40px;
+  }
+
+  .daftar-form {
+    position: relative;
+    max-width: 530px;
+    margin-inline: auto;
+  }
+
+  .daftar .email-field {
+    margin-bottom: 0;
+  }
+
+  .daftar-form-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+  }
+
+  .footer-brand-wrapper .logo {
+    margin: 0;
+  }
+
+  .footer-brand-wrapper,
+  .quicklink-wrapper,
+  .footer-bottom .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .quicklink-list {
+    margin-bottom: 0;
+  }
+
+  .copyright {
+    margin-bottom: 0;
+  }
+
+  .footer-bottom-img {
+    margin-inline: 0;
+  }
+
+  .detail-subtitle {
+    --fs-5: 26px;
+  }
+
+  .detail-title {
+    --fs-1: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .movies-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header.active {
+    padding-block: 5px;
+  }
+
+  .menu-open-btn,
+  .navbar-top,
+  .navbar-social-list {
+    display: none;
+  }
+
+  .navbar {
+    all: unset;
+    margin-left: auto;
+  }
+
+  .header-actions {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .navbar-list {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar-link {
+    border-bottom: none;
+    font-size: var(--fs-9);
+    font-weight: var(--fw-700);
+    text-transform: uppercase;
+    padding: 30px 15px;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .hero {
+    background-position: right;
+  }
+
+  .hero .container {
+    width: 950px;
+  }
+
+  .hero-content {
+    margin-top: 100px;
+    max-width: 600px;
+  }
+
+  .upcoming .flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .upcoming :is(.section-subtitle, .section-title) {
+    text-align: left;
+  }
+
+  .upcoming .section-title {
+    margin-bottom: 0;
+  }
+
+  .upcoming .movies-list > li {
+    min-width: calc(33.33% - 20px);
+  }
+
+  .service .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 70px;
+  }
+
+  .service-content {
+    padding-inline: 0;
+    width: calc(100% - 470px);
+  }
+
+  .service-banner {
+    margin-bottom: 0;
+  }
+
+  .service-btn {
+    right: 111px;
+  }
+
+  .daftar {
+    text-align: left;
+  }
+
+  .daftar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .daftar .title-wrapper {
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .daftar-form {
+    margin-inline: 0;
+    max-width: unset;
+    width: 100%;
+  }
+
+  .movie-detail {
+    padding-bottom: 200px;
+  }
+
+  .movie-detail .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .movie-detail-banner,
+  .details-actions {
+    margin: 0;
+  }
+
+  .download-btn {
+    position: absolute;
+    left: 15px;
+    bottom: -80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --fs-1: 60px;
+    --fs-4: 26px;
+  }
+
+  .container {
+    max-width: 1320px;
+  }
+
+  .movies-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .navbar {
+    margin-inline: auto;
+  }
+
+  .header-actions .btn-primary {
+    display: block;
+    --fs-11: 14px;
+    padding: 10px 35px;
+    letter-spacing: 1px;
+  }
+
+  .hero .container {
+    width: 1320px;
+  }
+
+  .upcoming .movies-list > li {
+    min-width: calc(25% - 22.5px);
+  }
+
+  .service-content {
+    width: calc(100% - 700px);
+  }
+
+  .service-btn {
+    right: -20px;
+  }
+
+  .service-list,
+  .service-title {
+    max-width: 480px;
+  }
+
+  .daftar .container {
+    max-width: 1150px;
+  }
+
+  .movie-detail {
+    padding-bottom: var(--section-padding);
+  }
+
+  .movie-detail-content {
+    max-width: 620px;
+  }
+
+  .detail-title {
+    --fs-1: 60px;
+  }
+
+  .download-btn {
+    left: auto;
+    right: 15px;
+    bottom: 0;
+    transform: rotate(0.25turn) translateY(100%);
+    transform-origin: bottom right;
+    padding: 40px 50px;
+  }
+
+  .download-btn ion-icon {
+    font-size: 30px;
+    transform: rotate(-0.25turn);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .team-card {
+    width: 100%;
+  }
+}
+
+/* CSS khusus untuk halaman sign-in */
+.sign-in-section {
+  background: url("../images/cta-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: 50px;
+  padding: 50px;
+  margin-top: 80px;
+  font: var(--ff-poppins);
+}
+.sign-in-form {
+  max-width: 400px;
+  margin-inline: auto;
+  background: var(--hitam2);
+  padding: 30px;
+  border-radius: 8px;
+  position: relative;
+  font-family: var(--ff-poppins);
+}
+
+.sign-in-form label {
+  color: var(--putih);
+  margin-bottom: 10px; /* Contoh margin bawah pada label */
+  margin: 10px;
+  line-height: 3; /* Sesuaikan nilai line-height sesuai kebutuhan */
+  height: auto;
+}
+
+
+.sign-in-form input {
+  margin-bottom: 15px; /* Contoh margin bawah pada input */
+  border-radius: 8px;
+  height: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  padding-left: 10px;
+}
+
+

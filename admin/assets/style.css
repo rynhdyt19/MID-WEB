@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+#sidebar {
+  float: left;
+  width: 200px;
+  background-color: #f2f2f2;
+  height: 100vh;
+  overflow: auto;
+  transition: width 0.5s;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 10px;
+}
+
+#sidebar nav ul li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #000;
+}
+
+#sidebar nav ul li a:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#sidebar nav ul li a.active,
+#sidebar nav ul li a.active:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+main {
+  margin-left: 200px;
+  padding: 20px;
+  transition: margin-left 0.5s;
+}
+
+.widget {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.kartu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 10px;
+  flex: 1 1 30%; /* Adjust the width as needed */
+  margin: 10px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.table-container {
+  max-width: 100%; /* Adjust the width as needed */
+  margin: 20px auto;
+}
+
+.table-container .tombol-tambah a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tombol-tambah a:hover {
+  background-color: #0056b3;
+}
+
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  margin-right: 5px;
+}
+
+form {
+  margin: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+label {
+  width: 100px;
+  margin-right: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  flex: 1;
+  padding: 8px;
+}
+
+.tambah {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tambah:hover {
+  background-color: #0056b3;
+}
+
+.tombol-batal a,
+.tombol-delete a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff1e1e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tombol-batal a,
+.tombol-delete a:hover {
+  background-color: #d71313;
+}
+
+.tombol-keputusan {
+  display: flex;
+  gap: 5px;
+}
+
+.tombol-update a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffc300;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tombol-update a:hover {
+  background-color: #ffb830;
+}
+
+.tombol-action {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
