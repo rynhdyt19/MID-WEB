@@ -1,5 +1,7 @@
 <?php
 require 'koneksi.php';
+session_start();
+
 
 $query = "SELECT * from movie;";
 $sql = mysqli_query($conn, $query);
@@ -15,6 +17,7 @@ $no = 0;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -27,6 +30,20 @@ $no = 0;
       <h2>Movie</h2>
       <div class="table-container">
         <div class="tombol-tambah"><a href="tambah-data-movie.php">Add</a></div>
+
+        <?php 
+        if(isset($_SESSION['eksekusi'])):
+        ?>
+
+        <div class="notif">
+          <div class="alert alert-success alert-white rounded">
+            <div class="icon"><i class="fa fa-check"></i></div>
+            <?php echo $_SESSION['eksekusi']; ?>
+          </div>
+        </div>
+        <?php 
+        session_destroy();
+        endif ?>
         <table>
           <thead>
             <tr>
@@ -70,5 +87,40 @@ $no = 0;
   </footer>
   <script src="./assets/script.js"></script>
 </body>
+<style>
+  .notif{
+    margin-top: 20px;
+  }
+  .alert {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .alert .icon i{
+    color: #c9e2b3;
+    background-color: #3c763d;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+
+  .alert-success hr {
+    border-top-color: #c9e2b3;
+  }
+
+  .alert-success .alert-link {
+    color: #2b542c;
+  }
+</style>
 
 </html>

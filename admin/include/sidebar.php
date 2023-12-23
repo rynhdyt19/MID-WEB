@@ -1,4 +1,4 @@
-<aside id="sidebar">
+<aside id="sidebar" style="height: 100vh;position:fixed;margin-top:-110px;">
     <button id="toggleSidebar">Toggle Sidebar</button>
     <nav>
         <ul>
