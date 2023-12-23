@@ -69,9 +69,11 @@ $no = 0;
                 <td class="gambar-admin">
                   <img width="100px" height="120px" src="images/<?php echo $result['gambar'] ?>" alt="gambar">
                 </td>
-                <td class="tombol-action">
-                  <div class="tombol-update"><a href="tambah-data-movie.php?ubah=<?php echo $result['id'] ?>">Update</a></div>
-                  <div class="tombol-delete"><a type="button" href="proses-tambah-data-movie.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</a></div>
+                <td>
+                  <div class="tombol-action">
+                    <div class="tombol-update"><a href="tambah-data-movie.php?ubah=<?php echo $result['id'] ?>">Update</a></div>
+                    <div class="tombol-delete"><a type="button" href="proses-tambah-data-movie.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</a></div>
+                  </div>
                 </td>
               </tr>
             <?php
