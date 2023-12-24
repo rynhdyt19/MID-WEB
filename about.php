@@ -1,3 +1,11 @@
+<?php
+require 'koneksi.php';
+session_start();
+
+$query = "SELECT * FROM about";
+$sql = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,31 +29,21 @@
 
   <main>
     <div class="container-team">
-      <div class="team-card">
-        <img src="./assets/images/fotoku.png">
-        <h2>Ryan Hidayat</h2>
-        <p>Manusia Biasa</p>
-      </div>
-      <div class="team-card">
-        <img src="./assets/images/aul.png">
-        <h2>Dia Auliani</h2>
-        <p>Manusia Biasa</p>
-      </div>
-      <div class="team-card">
-        <img src="./assets/images/nurul.jpg">
-        <h2>Andi Nurul Ain Nasmin</h2>
-        <p>Manusia Biasa</p>
-      </div>
+      <?php
+      while ($result = mysqli_fetch_assoc($sql)) {
+      ?>
+        <div class="team-card">
+          <img src="./admin/images/<?php echo $result['gambar_about'] ?>">
+          <h2><?php echo $result['nama'] ?></h2>
+          <p><?php echo $result['deskripsi'] ?></p>
+        </div>
+      <?php } ?>
     </div>
   </main>
 
   <?php
   include 'include/footer.php';
   ?>
-
-
-
-
 
   <!-- 
     - #GO TO TOP
@@ -54,8 +52,6 @@
   <a href="#top" class="go-top" data-go-top>
     <ion-icon name="chevron-up"></ion-icon>
   </a>
-
-
 
   <script src="./assets/js/script.js"></script>
 
