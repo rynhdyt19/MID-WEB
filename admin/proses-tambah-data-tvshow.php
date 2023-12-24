@@ -27,7 +27,7 @@ if (isset($_POST['aksi'])) {
 }
 
 if (isset($_GET['hapus'])) {
-    $berhasil = hapus_data_movie($_GET);
+    $berhasil = hapus_data_tvshow($_GET);
 
     if ($berhasil) {
         $_SESSION['eksekusi'] = "Data Berhasil Dihapus";

@@ -45,9 +45,9 @@ function update_data_movie($data, $files)
             $gambar = $result['gambar'];
         } else {
             $split = explode('.', $files['gambar']['name']);
-            $ekstensi = $split[count($split)-1];
+            $ekstensi = $split[count($split) - 1];
 
-            $gambar = $result['judul'].'.'.$ekstensi;
+            $gambar = $result['judul'] . '.' . $ekstensi;
             unlink("images/" . $result['gambar']);
             move_uploaded_file($files['gambar']['tmp_name'], 'images/' . $gambar);
         }
@@ -120,9 +120,9 @@ function update_data_tvshow($data, $files)
             $gambar = $result['gambar_tvshow'];
         } else {
             $split = explode('.', $files['gambar_tvshow']['name']);
-            $ekstensi = $split[count($split)-1];
+            $ekstensi = $split[count($split) - 1];
 
-            $gambar = $result['judul_tvshow'].'.'.$ekstensi;
+            $gambar = $result['judul_tvshow'] . '.' . $ekstensi;
             unlink("images/" . $result['gambar_tvshow']);
             move_uploaded_file($files['gambar_show']['tmp_name'], 'images/' . $gambar);
         }
@@ -138,7 +138,7 @@ function hapus_data_tvshow($ambil)
 {
     $id_tvshow = $ambil['hapus'];
 
-    $queryShow = "SELECT * FROM tvshow WHERE id = '$id_tvshow';";
+    $queryShow = "SELECT * FROM tv_show WHERE id = '$id_tvshow';";
     $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
     $result = mysqli_fetch_assoc($sqlShow);
 
@@ -192,9 +192,9 @@ function update_data_about($data, $files)
             $gambar = $result['gambar_about'];
         } else {
             $split = explode('.', $files['gambar_about']['name']);
-            $ekstensi = $split[count($split)-1];
+            $ekstensi = $split[count($split) - 1];
 
-            $gambar = $result['nama'].'.'.$ekstensi;
+            $gambar = $result['nama'] . '.' . $ekstensi;
             unlink("images/" . $result['gambar_about']);
             move_uploaded_file($files['gambar_about']['tmp_name'], 'images/' . $gambar);
         }
