@@ -8,7 +8,7 @@ if (isset($_POST['aksi'])) {
     if ($_POST['aksi'] == "tambah") {
         $berhasil = tambah_data_about($_POST, $_FILES);
 
-        if ($berhasil) {
+        if ($berhasil) { 
             $_SESSION['eksekusi'] = "Data Berhasil Ditambahkan";
             header('location: about_admin.php');
         } else {
