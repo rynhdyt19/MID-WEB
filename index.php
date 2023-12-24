@@ -1,12 +1,15 @@
-<?php 
+<?php
 require 'koneksi.php';
 session_start();
 
-$query = "SELECT * FROM movie LIMIT 8";
+$query = "SELECT * FROM movie ORDER BY id DESC LIMIT 8";
 $sql = mysqli_query($conn, $query);
 
-$query_tvshow = "SELECT * FROM tv_show LIMIT 4";
+$query_tvshow = "SELECT * FROM tv_show ORDER BY id DESC LIMIT 4";
 $sql_tvshow = mysqli_query($conn, $query_tvshow);
+
+$query_segera = "SELECT * FROM segera ORDER BY id DESC LIMIT 4";
+$sql_segera = mysqli_query($conn, $query_segera);
 
 ?>
 
@@ -49,7 +52,7 @@ $sql_tvshow = mysqli_query($conn, $query_tvshow);
               Banyak Sekali <strong>Movie</strong>, TVs Shows, & Lainnya.
             </h1>
 
-        </div>
+          </div>
       </section>
       <!-- 
         - #UPCOMING
@@ -63,158 +66,48 @@ $sql_tvshow = mysqli_query($conn, $query_tvshow);
             <div class="title-wrapper">
               <p class="section-subtitle">Tontonan Online</p>
 
-              <h2 class="h2 section-title">Film yang mau tayang</h2>
-            </div>  
+              <h2 class="h2 section-title">COMING SOON...</h2>
+            </div>
           </div>
 
           <ul class="movies-list  has-scrollbar">
+            <?php
+            while ($result = mysqli_fetch_assoc($sql_segera)) {
+            ?>
+              <li>
+                <div class="movie-card">
 
-            <li>
-              <div class="movie-card">
-
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-1.png" alt="The Northman movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
                   <a href="#">
-                    <h3 class="card-title">The Northman</h3>
+                    <figure class="card-banner">
+                      <img src="./admin/images/<?php echo $result['gambar_segera'] ?>" alt="The Northman movie poster">
+                    </figure>
                   </a>
 
-                  <time datetime="2023">2023</time>
-                </div>
+                  <div class="title-wrapper">
+                    <a href="#">
+                      <h3 class="card-title"><?php echo $result['judul_segera'] ?></h3>
+                    </a>
 
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT137M">137 min</time>
+                    <time datetime="2023"><?php echo $result['tahun_segera'] ?></time>
                   </div>
 
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
+                  <div class="card-meta">
+                    <div class="duration">
+                      <ion-icon name="time-outline"></ion-icon>
 
-                    <data>8.5</data>
-                  </div>
-                </div>
+                      <time datetime="PT137M"><?php echo $result['durasi_segera'] ?></time>
+                    </div>
 
-              </div>
-            </li>
+                    <div class="rating">
+                      <ion-icon name="star"></ion-icon>
 
-            <li>
-              <div class="movie-card">
-
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-2.png"
-                      alt="Doctor Strange in the Multiverse of Madness movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="#">
-                    <h3 class="card-title">Doctor Strange in the Multiverse of Madness</h3>
-                  </a>
-
-                  <time datetime="2023">2023</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">4K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT126M">126 min</time>
+                      <data><?php echo $result['rating_segera'] ?></data>
+                    </div>
                   </div>
 
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>Belumpi Direting</data>
-                  </div>
                 </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-3.png" alt="Memory movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="#">
-                    <h3 class="card-title">Memory</h3>
-                  </a>
-
-                  <time datetime="2023">2023</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">2K</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="">N/A</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>Belumpi Direting</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="movie-card">
-
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./assets/images/upcoming-4.png"
-                      alt="The Unbearable Weight of Massive Talent movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
-                  <a href="#">
-                    <h3 class="card-title">The Unbearable Weight of Massive Talent</h3>
-                  </a>
-
-                  <time datetime="2023">2023</time>
-                </div>
-
-                <div class="card-meta">
-                  <div class="badge badge-outline">HD</div>
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT107M">107 min</time>
-                  </div>
-
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
-
-                    <data>Belumpi Direting</data>
-                  </div>
-                </div>
-
-              </div>
-            </li>
-
+              </li>
+            <?php } ?>
           </ul>
 
         </div>
@@ -305,47 +198,47 @@ $sql_tvshow = mysqli_query($conn, $query_tvshow);
 
           <p class="section-subtitle">Tontonan Online</p>
 
-          <h2 class="h2 section-title">Film Terkenal</h2>
+          <h2 class="h2 section-title">FILM TERBARU</h2>
 
           <ul class="movies-list">
-          <?php
-            while($result = mysqli_fetch_assoc($sql)){
+            <?php
+            while ($result = mysqli_fetch_assoc($sql)) {
             ?>
-            <li>
-              <div class="movie-card">
+              <li>
+                <div class="movie-card">
 
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./admin/images/<?php echo $result['gambar'] ?>" alt="Sonic the Hedgehog 2 movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
                   <a href="#">
-                    <h3 class="card-title"><?php echo $result['judul'] ?></h3>
+                    <figure class="card-banner">
+                      <img src="./admin/images/<?php echo $result['gambar'] ?>" alt="Sonic the Hedgehog 2 movie poster">
+                    </figure>
                   </a>
 
-                  <time datetime="2023"><?php echo $result['tahun'] ?></time>
-                </div>
+                  <div class="title-wrapper">
+                    <a href="#">
+                      <h3 class="card-title"><?php echo $result['judul'] ?></h3>
+                    </a>
 
-                <div class="card-meta">
-                  <!-- <div class="badge badge-outline">2K</div> -->
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT122M"><?php echo $result['durasi'] ?></time>
+                    <time datetime="2023"><?php echo $result['tahun'] ?></time>
                   </div>
 
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
+                  <div class="card-meta">
+                    <!-- <div class="badge badge-outline">2K</div> -->
 
-                    <data><?php echo $result['rating'] ?></data>
+                    <div class="duration">
+                      <ion-icon name="time-outline"></ion-icon>
+
+                      <time datetime="PT122M"><?php echo $result['durasi'] ?></time>
+                    </div>
+
+                    <div class="rating">
+                      <ion-icon name="star"></ion-icon>
+
+                      <data><?php echo $result['rating'] ?></data>
+                    </div>
                   </div>
-                </div>
 
-              </div>
-            </li>
+                </div>
+              </li>
             <?php } ?>
 
           </ul>
@@ -360,50 +253,50 @@ $sql_tvshow = mysqli_query($conn, $query_tvshow);
       <section class="tv-series">
         <div class="container">
 
-          <p class="section-subtitle">Acara TV Bagus</p>
+          <p class="section-subtitle">TV SHOW</p>
 
-          <h2 class="h2 section-title">Acara TV Paling Bagus Didunia</h2>
+          <h2 class="h2 section-title">ACARA TV TERBARU</h2>
 
           <ul class="movies-list">
-          <?php
-            while($result = mysqli_fetch_assoc($sql_tvshow)){
+            <?php
+            while ($result = mysqli_fetch_assoc($sql_tvshow)) {
             ?>
-            <li>
-              <div class="movie-card">
+              <li>
+                <div class="movie-card">
 
-                <a href="#">
-                  <figure class="card-banner">
-                    <img src="./admin/images/<?php echo $result['gambar_tvshow'] ?>" alt="Moon Knight movie poster">
-                  </figure>
-                </a>
-
-                <div class="title-wrapper">
                   <a href="#">
-                    <h3 class="card-title"><?php echo $result['judul_tvshow'] ?></h3>
+                    <figure class="card-banner">
+                      <img src="./admin/images/<?php echo $result['gambar_tvshow'] ?>" alt="Moon Knight movie poster">
+                    </figure>
                   </a>
 
-                  <time datetime="2023">2023</time>
-                </div>
+                  <div class="title-wrapper">
+                    <a href="#">
+                      <h3 class="card-title"><?php echo $result['judul_tvshow'] ?></h3>
+                    </a>
 
-                <div class="card-meta">
-                  <!-- <div class="badge badge-outline">2K</div> -->
-
-                  <div class="duration">
-                    <ion-icon name="time-outline"></ion-icon>
-
-                    <time datetime="PT47M"><?php echo $result['durasi_tvshow'] ?></time>
+                    <time datetime="2023">2023</time>
                   </div>
 
-                  <div class="rating">
-                    <ion-icon name="star"></ion-icon>
+                  <div class="card-meta">
+                    <!-- <div class="badge badge-outline">2K</div> -->
 
-                    <data><?php echo $result['rating_tvshow'] ?></data>
+                    <div class="duration">
+                      <ion-icon name="time-outline"></ion-icon>
+
+                      <time datetime="PT47M"><?php echo $result['durasi_tvshow'] ?></time>
+                    </div>
+
+                    <div class="rating">
+                      <ion-icon name="star"></ion-icon>
+
+                      <data><?php echo $result['rating_tvshow'] ?></data>
+                    </div>
                   </div>
-                </div>
 
-              </div>
-            </li>
-              <?php } ?>
+                </div>
+              </li>
+            <?php } ?>
           </ul>
 
         </div>
@@ -474,18 +367,18 @@ $sql_tvshow = mysqli_query($conn, $query_tvshow);
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<!-- ... Bagian lain dari HTML ... -->
+  <!-- ... Bagian lain dari HTML ... -->
 
 
 
-<script>
-  document.getElementById('signInBtn').addEventListener('click', function() {
-    // Gantilah "sign in.html" dengan path atau URL halaman sign in yang diinginkan
-    window.location.href = 'sign in.html';
-  });
-</script>
+  <script>
+    document.getElementById('signInBtn').addEventListener('click', function() {
+      // Gantilah "sign in.html" dengan path atau URL halaman sign in yang diinginkan
+      window.location.href = 'sign in.html';
+    });
+  </script>
 
-<!-- ... Bagian lain dari HTML ... -->
+  <!-- ... Bagian lain dari HTML ... -->
 
 </body>
 
