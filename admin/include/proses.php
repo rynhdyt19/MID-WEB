@@ -150,6 +150,81 @@ function hapus_data_tvshow($ambil)
     return true;
 }
 
+//proses film segera
+function tambah_data_segera($data, $files)
+{
+    if ($_POST['aksi'] == "tambah") {
+
+        $judul = $data['judul_segera'];
+        $tahun = $data['tahun_segera'];
+        $durasi = $data['durasi_segera'];
+        $rating = $data['rating_segera'];
+
+        $split = explode('.', $files['gambar_segera']['name']);
+
+        $ekstensi = $split[count($split) - 1];
+
+        $gambar = $judul . '.' . $ekstensi;
+
+        $dir = "images/";
+        $tmpFile = $files['gambar_segera']['tmp_name'];
+
+        move_uploaded_file($tmpFile, $dir . $gambar);
+
+        $query = "INSERT INTO segera VALUES(null, '$judul', '$tahun', '$durasi', '$rating', '$gambar');";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+
+        return true;
+    }
+}
+
+function update_data_segera($data, $files)
+{
+    if ($data['aksi'] == 'update') {
+        $id_segera = $data['id'];
+        $judul = $data['judul_segera'];
+        $tahun = $data['tahun_segera'];
+        $durasi = $data['durasi_segera'];
+        $rating = $data['rating_segera'];
+
+        $queryShow = "SELECT * FROM segera WHERE id = '$id_segera';";
+        $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+        $result = mysqli_fetch_assoc($sqlShow);
+
+        if ($files['gambar_segera']['name'] == "") {
+            $gambar = $result['gambar_segera'];
+        } else {
+            $split = explode('.', $files['gambar_segera']['name']);
+            $ekstensi = $split[count($split) - 1];
+
+            $gambar = $result['judul_segera'] . '.' . $ekstensi;
+            unlink("images/" . $result['gambar_segera']);
+            move_uploaded_file($files['gambar_show']['tmp_name'], 'images/' . $gambar);
+        }
+
+        $query = "UPDATE segera SET judul_segera='$judul', tahun_segera='$tahun', durasi_segera='$durasi', rating_segera='$rating', gambar_segera='$gambar' WHERE id = '$id_segera';";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+    }
+
+    return true;
+}
+
+function hapus_data_segera($ambil)
+{
+    $id_segera = $ambil['hapus'];
+
+    $queryShow = "SELECT * FROM segera WHERE id = '$id_segera';";
+    $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+    $result = mysqli_fetch_assoc($sqlShow);
+
+    unlink("images/" . $result['gambar_segera']);
+
+    $query = "DELETE FROM segera WHERE id = '$id_segera';";
+    $sql = mysqli_query($GLOBALS['conn'], $query);
+
+    return true;
+}
+
 
 //proses about
 function tambah_data_about($data, $files)
