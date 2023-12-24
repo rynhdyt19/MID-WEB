@@ -149,3 +149,75 @@ function hapus_data_tvshow($ambil)
 
     return true;
 }
+
+
+//proses about
+function tambah_data_about($data, $files)
+{
+    if ($_POST['aksi'] == "tambah") {
+
+        $nama = $data['nama'];
+        $deskripsi = $data['deskripsi'];
+
+        $split = explode('.', $files['gambar_about']['name']);
+
+        $ekstensi = $split[count($split) - 1];
+
+        $gambar = $nama . '.' . $ekstensi;
+
+        $dir = "images/";
+        $tmpFile = $files['gambar_about']['tmp_name'];
+
+        move_uploaded_file($tmpFile, $dir . $gambar);
+
+        $query = "INSERT INTO about VALUES(null, '$nama', '$deskripsi', '$gambar');";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+
+        return true;
+    }
+}
+
+function update_data_about($data, $files)
+{
+    if ($data['aksi'] == 'update') {
+        $id_about = $data['id'];
+        $nama = $data['nama'];
+        $deskripsi = $data['deskripsi'];
+
+        $queryShow = "SELECT * FROM about WHERE id = '$id_about';";
+        $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+        $result = mysqli_fetch_assoc($sqlShow);
+
+        if ($files['gambar_about']['name'] == "") {
+            $gambar = $result['gambar_about'];
+        } else {
+            $split = explode('.', $files['gambar_about']['name']);
+            $ekstensi = $split[count($split)-1];
+
+            $gambar = $result['nama'].'.'.$ekstensi;
+            unlink("images/" . $result['gambar_about']);
+            move_uploaded_file($files['gambar_about']['tmp_name'], 'images/' . $gambar);
+        }
+
+        $query = "UPDATE about SET nama='$nama', deskripsi='$deskripsi', gambar_about='$gambar' WHERE id = '$id_about';";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+    }
+
+    return true;
+}
+
+function hapus_data_about($ambil)
+{
+    $id_about = $ambil['hapus'];
+
+    $queryShow = "SELECT * FROM about WHERE id = '$id_about';";
+    $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+    $result = mysqli_fetch_assoc($sqlShow);
+
+    unlink("images/" . $result['gambar_about']);
+
+    $query = "DELETE FROM about WHERE id = '$id_about';";
+    $sql = mysqli_query($GLOBALS['conn'], $query);
+
+    return true;
+}
