@@ -3,32 +3,33 @@ require 'koneksi.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
-    // Ambil hash password dari database berdasarkan username
-    $query = "SELECT * FROM admin_film WHERE username='$username'";
-    $result = $conn->query($query);
+  // Ambil hash password dari database berdasarkan username
+  $query = "SELECT * FROM admin_film WHERE username='$username'";
+  $result = $conn->query($query);
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $hashed_password = $row['password'];
+  if ($result->num_rows == 1) {
+      $row = $result->fetch_assoc();
+      $hashed_password = $row['password'];
 
-        // Verifikasi password
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['loggedin'] = true;
-            header('Location: index.php');
-            exit;
-        } else {
-            $_SESSION['error_message'] = "Username atau password salah!";
-            header('Location: login.php');
-            exit;
-        }
-    } else {
-        $_SESSION['error_message'] = "Username tidak ditemukan!";
-        header('Location: login.php');
-        exit;
-    }
+      // Verifikasi password
+      if (password_verify($password, $hashed_password)) {
+          $_SESSION['loggedin'] = true;
+          $_SESSION['username'] = $username; // Set $_SESSION['username'] setelah berhasil login
+          header('Location: index.php');
+          exit;
+      } else {
+          $_SESSION['error_message'] = "Username atau password salah!";
+          header('Location: login.php');
+          exit;
+      }
+  } else {
+      $_SESSION['error_message'] = "Username tidak ditemukan!";
+      header('Location: login.php');
+      exit;
+  }
 }
 ?>
 

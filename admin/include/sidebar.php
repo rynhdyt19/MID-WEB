@@ -29,7 +29,7 @@
     }
 
     .logo{
-        margin: 30px;
+        margin: 50px 0 0 40px ;
     }
 
     .logo img{

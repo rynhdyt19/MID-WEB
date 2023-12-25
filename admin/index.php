@@ -1,9 +1,18 @@
 <?php
-require 'koneksi.php';
 session_start();
+require 'koneksi.php';
+
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
   header('Location: login.php');
   exit;
+}
+
+// Inisialisasi $username dengan nilai default 'Guest'
+$username = 'Guest';
+
+// Jika sudah login, ambil informasi username dari session
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+  $username = $_SESSION['username'];
 }
 
 $sql_tvshow = "SELECT COUNT(*) AS total_tvshow FROM tv_show";
