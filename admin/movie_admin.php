@@ -2,12 +2,28 @@
 require 'koneksi.php';
 session_start();
 
-$query = "SELECT * from movie;";
+// Menentukan jumlah data yang ingin ditampilkan per halaman
+$records_per_page = 5;
+
+// Mengambil halaman saat ini dari query string, jika tidak ada, maka akan dianggap halaman pertama
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Hitung offset (pergeseran) untuk query database berdasarkan halaman saat ini
+$offset = ($current_page - 1) * $records_per_page;
+
+// Mengambil jumlah total data
+$total_pages_query = "SELECT COUNT(*) AS total FROM movie";
+$result_total_pages = mysqli_query($conn, $total_pages_query);
+$total_records = mysqli_fetch_assoc($result_total_pages)['total'];
+
+// Menghitung jumlah halaman yang diperlukan
+$total_pages = ceil($total_records / $records_per_page);
+
+// Query untuk mengambil data dengan batasan hasil per halaman
+$query = "SELECT * FROM movie ORDER BY id DESC LIMIT $offset, $records_per_page";
 $sql = mysqli_query($conn, $query);
-// $result = mysqli_fetch_assoc($sql);
 
-
-$no = 0;
+$no = ($current_page - 1) * $records_per_page;
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
   header('Location: login.php');
@@ -86,6 +102,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             ?>
           </tbody>
         </table>
+        <div class="pagination">
+          <?php if ($current_page > 1) : ?>
+            <div class="link-page">
+              <a href="?page=<?php echo ($current_page - 1); ?>">Prev</a>
+            </div>
+          <?php endif; ?>
+          <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+            <div class="link-page">
+              <a href="?page=<?php echo $i; ?>" <?php if ($i === $current_page) echo 'class="active"'; ?>><?php echo $i; ?></a>
+
+            </div>
+          <?php endfor; ?>
+          <?php if ($current_page < $total_pages) : ?>
+            <div class="link-page">
+              <a href="?page=<?php echo ($current_page + 1); ?>">Next</a>
+            </div>
+          <?php endif; ?>
+        </div>
       </div>
     </section>
   </main>
@@ -126,6 +160,28 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
   .alert-success .alert-link {
     color: #2b542c;
+  }
+
+  .pagination {
+    margin-top: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination a{
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .pagination .link-page{
+    width: 40px;
+    background-color: #27374D;
+    margin-right: 10px;
+  }
+
+  .pagination .active{
+    color: #97FFF4;
   }
 </style>
 
