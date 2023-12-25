@@ -340,7 +340,7 @@ function hapus_data_admin($ambil)
     $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
     $result = mysqli_fetch_assoc($sqlShow);
 
-    $query = "DELETE FROM about WHERE id = '$id_admin';";
+    $query = "DELETE FROM admin_film WHERE id = '$id_admin';";
     $sql = mysqli_query($GLOBALS['conn'], $query);
 
     return true;
