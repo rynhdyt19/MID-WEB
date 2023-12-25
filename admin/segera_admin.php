@@ -6,6 +6,11 @@ $query = "SELECT * from segera;";
 $sql = mysqli_query($conn, $query);
 
 $no = 0;
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('Location: login.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>

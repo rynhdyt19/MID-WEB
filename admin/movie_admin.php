@@ -2,11 +2,15 @@
 require 'koneksi.php';
 session_start();
 
-
 $query = "SELECT * from movie;";
 $sql = mysqli_query($conn, $query);
 
 $no = 0;
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('Location: login.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
