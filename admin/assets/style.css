@@ -16,7 +16,7 @@ header {
   float: left;
   width: 200px;
   background-color: #f2f2f2;
-  height: 100vh;
+  height: 105vh;
   overflow: auto;
   transition: width 0.5s;
 }
@@ -38,18 +38,18 @@ nav ul li {
 }
 
 #sidebar nav ul li a:hover {
-  background-color: #007bff;
+  background-color: #27374D;
   color: #fff;
 }
 
 #sidebar nav ul li a.active,
 #sidebar nav ul li a.active:hover {
-  background-color: #007bff;
+  background-color: #27374D;
   color: #fff;
 }
 
 main {
-  margin-left: 200px;
+  margin-left: 250px;
   padding: 20px;
   transition: margin-left 0.5s;
 }

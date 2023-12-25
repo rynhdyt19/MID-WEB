@@ -25,15 +25,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 
 <body>
-  <header>
-    <h1>RANTv</h1>
-  </header>
+  <?php include 'include/header.php'; ?>
   <?php include 'include/sidebar.php'; ?>
   <main>
     <section class="widget">
       <h2>About</h2>
       <div class="table-container">
-        <div class="tombol-tambah"><a href="tambah-data-about.php">Add</a></div>
+        <div class="tombol-tambah"><a href="tambah-data-about.php">Add   <i class="fa-solid fa-plus"></i></a></div>
         <?php
         if (isset($_SESSION['eksekusi'])) :
         ?>
@@ -70,8 +68,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </td>
                 <td>
                   <div class="tombol-action">
-                    <div class="tombol-update"><a href="tambah-data-about.php?ubah=<?php echo $result['id'] ?>">Update</a></div>
-                    <div class="tombol-delete"><a type="button" href="proses-tambah-data-about.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</a></div>
+                    <div class="tombol-update"><a href="tambah-data-about.php?ubah=<?php echo $result['id'] ?>"><i class="fa-solid fa-pen-to-square"></i>  Update</a></div>
+                    <div class="tombol-delete"><a type="button" href="proses-tambah-data-about.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')"><i class="fa-solid fa-trash"></i>  Delete</a></div>
                   </div>
                 </td>
               </tr>
@@ -83,24 +81,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
       </div>
     </section>
   </main>
-  <footer>
-    <p>&copy; 2023 Dashboard</p>
-  </footer>
+  <?php include 'include/footer.php'; ?>
   <script src="./assets/script.js"></script>
-  <script>
-    // script.js
-    document.addEventListener('DOMContentLoaded', function() {
-      var sidebarLinks = document.querySelectorAll('#sidebar nav ul li a');
-      sidebarLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-          sidebarLinks.forEach(function(item) {
-            item.classList.remove('active');
-          });
-          this.classList.add('active');
-        });
-      });
-    });
-  </script>
 </body>
 
 <style>

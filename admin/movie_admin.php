@@ -4,6 +4,8 @@ session_start();
 
 $query = "SELECT * from movie;";
 $sql = mysqli_query($conn, $query);
+// $result = mysqli_fetch_assoc($sql);
+
 
 $no = 0;
 
@@ -26,28 +28,26 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 
 <body>
-  <header>
-    <h1>RANTv</h1>
-  </header>
+  <?php include 'include/header.php'; ?>
   <?php include 'include/sidebar.php'; ?>
   <main style="height: fit-content;">
     <section class="widget">
       <h2>Movie</h2>
       <div class="table-container">
-        <div class="tombol-tambah"><a href="tambah-data-movie.php">Add</a></div>
+        <div class="tombol-tambah"><a href="tambah-data-movie.php">Add <i class="fa-solid fa-plus"></i></a></div>
 
-        <?php 
-        if(isset($_SESSION['eksekusi'])):
+        <?php
+        if (isset($_SESSION['eksekusi'])) :
         ?>
 
-        <div class="notif">
-          <div class="alert alert-success alert-white rounded">
-            <div class="icon"><i class="fa fa-check"></i></div>
-            <?php echo $_SESSION['eksekusi']; ?>
+          <div class="notif">
+            <div class="alert alert-success alert-white rounded">
+              <div class="icon"><i class="fa fa-check"></i></div>
+              <?php echo $_SESSION['eksekusi']; ?>
+            </div>
           </div>
-        </div>
-        <?php 
-        session_destroy();
+        <?php
+          session_destroy();
         endif ?>
         <table>
           <thead>
@@ -76,8 +76,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </td>
                 <td>
                   <div class="tombol-action">
-                    <div class="tombol-update"><a href="tambah-data-movie.php?ubah=<?php echo $result['id'] ?>">Update</a></div>
-                    <div class="tombol-delete"><a type="button" href="proses-tambah-data-movie.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')">Delete</a></div>
+                    <div class="tombol-update"><a href="tambah-data-movie.php?ubah=<?php echo $result['id'] ?>"><i class="fa-solid fa-pen-to-square"></i> Update</a></div>
+                    <div class="tombol-delete"><a type="button" href="proses-tambah-data-movie.php?hapus=<?php echo $result['id'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus ?')"><i class="fa-solid fa-trash"></i> Delete</a></div>
                   </div>
                 </td>
               </tr>
@@ -89,15 +89,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
       </div>
     </section>
   </main>
-  <footer>
-    <p>&copy; 2023 Dashboard</p>
-  </footer>
+  <?php include 'include/footer.php'; ?>
   <script src="./assets/script.js"></script>
 </body>
 <style>
-  .notif{
+  .notif {
     margin-top: 20px;
   }
+
   .alert {
     display: flex;
     align-items: center;
@@ -107,7 +106,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     border-radius: 4px;
   }
 
-  .alert .icon i{
+  .alert .icon i {
     color: #c9e2b3;
     background-color: #3c763d;
     padding: 10px;
