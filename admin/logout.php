@@ -13,5 +13,5 @@ window.onload = function() {
   }
 };
 </script>';
-exit;
+// exit;
 ?>

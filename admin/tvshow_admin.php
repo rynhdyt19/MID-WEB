@@ -23,6 +23,13 @@ $total_pages = ceil($total_records / $records_per_page);
 $query = "SELECT * FROM tv_show ORDER BY id DESC LIMIT $offset, $records_per_page";
 $sql = mysqli_query($conn, $query);
 
+// Menangani pencarian
+$search_keyword = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Ubah query untuk pencarian
+$query = "SELECT * FROM tv_show WHERE judul_tvshow LIKE '%$search_keyword%' ORDER BY id DESC LIMIT $offset, $records_per_page";
+$sql = mysqli_query($conn, $query);
+
 $no = ($current_page - 1) * $records_per_page;
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -50,8 +57,16 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <section class="widget">
       <h2>Tv Show</h2>
       <div class="table-container">
-        <div class="tombol-tambah"><a href="tambah-data-tvshow.php">Add <i class="fa-solid fa-plus"></i></a></div>
-        <?php
+      <div class="atas-table">
+          <div class="tombol-tambah"><a href="tambah-data-tvshow.php">Add <i class="fa-solid fa-plus"></i></a></div>
+          <div class="cari">
+            <form action="" method="GET">
+              <!-- <label for="search">Search:</label> -->
+              <input type="text" id="search" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>        <?php
         if (isset($_SESSION['eksekusi'])) :
         ?>
 
@@ -183,6 +198,30 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
   .pagination .active{
     color: #97FFF4;
+  }
+
+  .atas-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .atas-table .cari input {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+  }
+
+  .atas-table .cari button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
   }
 </style>
 
