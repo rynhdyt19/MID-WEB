@@ -2,25 +2,30 @@
 require 'koneksi.php';
 session_start();
 
-// $admin_username = 'username';
-// $admin_password = 'password';
-$keterangan = "username atau password salah!";
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Query untuk memeriksa apakah username dan password cocok
-    $query = "SELECT * FROM admin_film WHERE username='$username' AND password='$password'";
+    // Ambil hash password dari database berdasarkan username
+    $query = "SELECT * FROM admin_film WHERE username='$username'";
     $result = $conn->query($query);
 
     if ($result->num_rows == 1) {
-        $_SESSION['loggedin'] = true;
-        header('Location: index.php');
-        exit;
+        $row = $result->fetch_assoc();
+        $hashed_password = $row['password'];
+
+        // Verifikasi password
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['loggedin'] = true;
+            header('Location: index.php');
+            exit;
+        } else {
+            $_SESSION['error_message'] = "Username atau password salah!";
+            header('Location: login.php');
+            exit;
+        }
     } else {
-        $_SESSION['error_message'] = "Username atau password salah!";
+        $_SESSION['error_message'] = "Username tidak ditemukan!";
         header('Location: login.php');
         exit;
     }
@@ -46,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SESSION['error_message'])) {
         echo '<div class="notif">';
         echo '<div class="alert alert-success alert-white rounded">';
-        echo '<div class="icon"><i class="fa fa-check"></i></div>';
+        echo '<div class="icon"><i class="fa-solid fa-xmark"></i></div>';
         echo $_SESSION['error_message'];
         echo '</div>';
         echo '</div>';
@@ -70,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <style>
     body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #DDDDDD;
   margin: 0;
   padding: 0;
   display: flex;

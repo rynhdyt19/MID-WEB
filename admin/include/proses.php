@@ -296,3 +296,52 @@ function hapus_data_about($ambil)
 
     return true;
 }
+
+//proses admin
+function tambah_data_admin($data, $files)
+{
+    if ($_POST['aksi'] == "tambah") {
+
+        $username = $data['username'];
+        $email = $data['email'];
+        $password = password_hash($data['password'], PASSWORD_DEFAULT); // Menggunakan password_hash()
+
+        $query = "INSERT INTO admin_film VALUES(null, '$username', '$email', '$password');";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+
+        return true;
+    }
+}
+
+function update_data_admin($data, $files)
+{
+    if ($data['aksi'] == 'update') {
+        $id_admin = $data['id'];
+        $username = $data['username'];
+        $email = $data['email'];
+        $password = password_hash($data['password'], PASSWORD_DEFAULT); // Menggunakan password_hash()
+
+        $queryShow = "SELECT * FROM admin_film WHERE id = '$id_admin';";
+        $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+        $result = mysqli_fetch_assoc($sqlShow);
+
+        $query = "UPDATE admin_film SET username='$username', email='$email', password='$password' WHERE id = '$id_admin';";
+        $sql = mysqli_query($GLOBALS['conn'], $query);
+    }
+
+    return true;
+}
+
+function hapus_data_admin($ambil)
+{
+    $id_admin = $ambil['hapus'];
+
+    $queryShow = "SELECT * FROM admin_film WHERE id = '$id_admin';";
+    $sqlShow = mysqli_query($GLOBALS['conn'], $queryShow);
+    $result = mysqli_fetch_assoc($sqlShow);
+
+    $query = "DELETE FROM about WHERE id = '$id_admin';";
+    $sql = mysqli_query($GLOBALS['conn'], $query);
+
+    return true;
+}
