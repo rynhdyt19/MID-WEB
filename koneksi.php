@@ -4,6 +4,5 @@ $username = "root"; // Username MySQL
 $password = ""; // Password MySQL
 $dbname = "web_teori"; // Nama database
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 ?>
