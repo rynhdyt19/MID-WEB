@@ -3,7 +3,7 @@ require 'koneksi.php';
 session_start();
 
 // Inisialisasi $username dengan nilai default 'Guest'
-$username = 'Guest';
+$username = 'admin';
 
 // Jika sudah login, ambil informasi username dari session
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -39,11 +39,6 @@ $query = "SELECT * FROM tv_show WHERE judul_tvshow LIKE '%$search_keyword%' ORDE
 $sql = mysqli_query($conn, $query);
 
 $no = ($current_page - 1) * $records_per_page;
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-  header('Location: login.php');
-  exit;
-}
 ?>
 
 <!DOCTYPE html>
