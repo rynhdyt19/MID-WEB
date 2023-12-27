@@ -2,6 +2,14 @@
 require 'koneksi.php';
 session_start();
 
+// Inisialisasi $username dengan nilai default 'Guest'
+$username = 'Guest';
+
+// Jika sudah login, ambil informasi username dari session
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+  $username = $_SESSION['username'];
+}
+
 // Menentukan jumlah data yang ingin ditampilkan per halaman
 $records_per_page = 5;
 
